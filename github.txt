@@ -1,0 +1,79 @@
+Let's say you are on the master branch and you want to create a new branch called feature-branch.
+
+Current State:
+
+sh
+Copy code
+git checkout master
+Create a New Branch:
+
+sh
+Copy code
+git checkout -b feature-branch
+At this point, feature-branch is an exact copy of the master branch, including all files and commit history. Any changes you make on feature-branch will not affect the master branch until you merge the changes back.
+
+Visual Representation
+Here’s a simple visualization:
+
+sql
+Copy code
+master (or main)
+   |
+   ├── Commit A
+   ├── Commit B
+   └── Commit C
+         |
+         |-- (create a new branch here)
+         |
+feature-branch
+   └── Commit C (same as master/main at the time of branch creation)
+After branching out:
+
+sql
+Copy code
+master (or main)             feature-branch
+   |                            |
+   ├── Commit A                 ├── Commit A
+   ├── Commit B                 ├── Commit B
+   └── Commit C                 └── Commit C
+         |                            |
+   (new commits)              (new commits)
+Making Changes
+Changes on feature-branch:
+
+sh
+Copy code
+git checkout feature-branch
+# Make some changes
+git add .
+git commit -m "New feature implemented"
+Changes on master:
+
+sh
+Copy code
+git checkout master
+# Make some changes
+git add .
+git commit -m "Bug fix"
+At this point, feature-branch and master have diverged. The commits made on feature-branch are independent of the commits made on master.
+
+Merging Changes
+When you are ready to integrate the changes from feature-branch back into master, you perform a merge:
+
+Switch to master:
+
+sh
+Copy code
+git checkout master
+Merge feature-branch into master:
+
+sh
+Copy code
+git merge feature-branch
+This will incorporate the changes from feature-branch into master.
+
+Summary
+Creating a new branch copies the content and commit history of the branch you are currently on.
+Changes made in the new branch do not affect the original branch until merged.
+Branches allow for isolated development, making collaboration and feature development more manageable.
+Branching is a fundamental feature in Git and GitHub that helps manage different streams of work efficiently.
